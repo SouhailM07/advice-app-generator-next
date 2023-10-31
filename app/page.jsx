@@ -1,7 +1,12 @@
+// components
+import { MyContainer } from "@/components";
+
 export default function Home() {
   return (
     <>
-      <main>sb</main>
+      <main>
+        <MyContainer />
+      </main>
     </>
   );
 }
