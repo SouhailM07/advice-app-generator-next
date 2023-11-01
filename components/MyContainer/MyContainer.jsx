@@ -1,4 +1,12 @@
+// style
 import "./mycontainer.css";
+// components
+import { AdviceBox } from "@/components";
+
 export default function MyContainer() {
-  return <>MyContainer</>;
+  return (
+    <>
+      <AdviceBox />
+    </>
+  );
 }
