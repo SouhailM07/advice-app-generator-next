@@ -15,8 +15,8 @@ module.exports = {
         DarkBlue: "hsl(218, 23%, 16%)",
       },
       screens: {
-        sm: "550px",
-        md: "1024px",
+        sm: "0px",
+        md: "550px",
       },
     },
   },

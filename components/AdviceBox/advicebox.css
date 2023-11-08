@@ -4,7 +4,7 @@
 
 article {
   @apply rounded-2xl flex flex-col items-center text-center;
-  @apply w-[40rem];
+  @apply md:w-[40rem] sm:w-[95vw];
   @apply bg-DarkGrayishBlue;
 }
 
@@ -20,7 +20,7 @@ h3 {
 }
 
 p {
-  @apply text-[28px] py-[2.2rem];
+  @apply md:text-[28px] py-[2.2rem] sm:text-[20px];
   @apply text-white;
 }
 

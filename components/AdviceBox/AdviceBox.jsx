@@ -11,10 +11,15 @@ import dice from "@/public/icon-dice.svg";
 
 export default function AdviceBox() {
   let [advice, setAdvice] = useState("");
+  let [loading, setLoading] = useState(false);
   let getAdvice = () => {
-    axios.get("https://api.adviceslip.com/advice").then((res) => {
-      setAdvice(res.data.slip);
-    });
+    setLoading(true);
+    setTimeout(() => {
+      axios.get("https://api.adviceslip.com/advice").then((res) => {
+        setAdvice(res.data.slip);
+        setLoading(false);
+      });
+    }, 500);
   };
   useEffect(() => {
     getAdvice();
@@ -23,8 +28,8 @@ export default function AdviceBox() {
     <>
       <article>
         <section>
-          <h3>ADVICE #{advice.id}</h3>
-          <p>{advice.advice}</p>
+          <h3>{loading ? "loading..." : `ADVICE #${advice.id}`}</h3>
+          <p>{!loading ? advice.advice : "loading..."}</p>
           <div>
             <Image src={lines} alt="img" />
           </div>
