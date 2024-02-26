@@ -3,7 +3,6 @@
 import "./advicebox.css";
 // hooks
 import { useState, useEffect } from "react";
-import axios from "axios";
 // assets
 import Image from "next/image";
 import lines from "@/public/pattern-divider-desktop.svg";
@@ -12,14 +11,17 @@ import dice from "@/public/icon-dice.svg";
 export default function AdviceBox() {
   let [advice, setAdvice] = useState("");
   let [loading, setLoading] = useState(false);
-  let getAdvice = () => {
+  let getAdvice = async () => {
     setLoading(true);
-    setTimeout(() => {
-      axios.get("https://api.adviceslip.com/advice").then((res) => {
-        setAdvice(res.data.slip);
-        setLoading(false);
-      });
-    }, 500);
+    await fetch("https://api.adviceslip.com/advice", {
+      cache: "no-cache",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setAdvice(res.slip);
+      })
+      .then(() => setLoading(false))
+      .catch((err) => console.log(err));
   };
   useEffect(() => {
     getAdvice();
@@ -34,7 +36,7 @@ export default function AdviceBox() {
             <Image src={lines} alt="img" />
           </div>
         </section>
-        <button id="btn" onClick={() => getAdvice()}>
+        <button id="btn" onClick={getAdvice}>
           <Image src={dice} alt="img" />
         </button>
       </article>
